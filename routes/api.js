@@ -8,7 +8,7 @@ var controllers = {
 }
 
 router.get('/:resource', function(req, res, next) {
-	var resource = req. params.resource
+	var resource = req.params.resource
 
 	var controller = controllers[resource]
 	if(controller == null){
@@ -41,8 +41,8 @@ router.get('/:resource', function(req, res, next) {
 })
 
 router.get('/:resource/:id', function(req, res, next) {
-	var resource = req. params.resource
-	var id = req. params.id
+	var resource = req.params.resource
+	var id = req.params.id
 
 	var controller = controllers[resource]
 	if(controller == null){
@@ -74,7 +74,7 @@ router.get('/:resource/:id', function(req, res, next) {
 })
 
 router.post('/:resource', function(req, res, next) {
-	var resource = req. params.resource
+	var resource = req.params.resource
 
 	var controller = controllers[resource]
 	if(controller == null){
@@ -107,7 +107,7 @@ router.post('/:resource', function(req, res, next) {
 })
 
 router.put('/:resource/:id', function(req, res, next) {
-	var resource = req. params.resource
+	var resource = req.params.resource
 
 	var controller = controllers[resource]
 	if(controller == null){
