@@ -1,7 +1,22 @@
 var Place = require('../models/Place')
+var Request = require('../utils/Request')
 
 module.exports = {
+	
 	get: function(params, isRaw, callback){
+		//geo spatial query
+		
+		if(params.lat!=null && params.lng!=null){
+			var distance = 1000 / 6371;
+			params['geo'] = {
+				$near: [params.lat, params.lng],
+				$maxDistance: distance
+			}
+
+			delete params['lat']
+			delete params['lng']
+		}
+
 		Place.find(params, function(err, places){
 			if(err){
 				if(callback != null)
@@ -43,15 +58,40 @@ module.exports = {
 	},
 
 	post: function(params, callback){
-		Place.create(params, function(err, place){
-			if(err){
+
+		var url = 'https://maps.googleapis.com/maps/api/geocode/json?address='+params.address+','+params.city+','+params.state
+
+	    Request.get(url, {key:'AIzaSyA7ubOEswjvE09Hdpii4ZRi__SndjdE7ds'})
+	    .then(function(response){
+	    	console.log(JSON.stringify(response))
+
+	    	var results = response.results
+	    	var locationInfo = results[0]
+	    	var geometry = locationInfo.geometry
+	    	var location = geometry.location
+	    	var geo = [location.lat, location.lng]
+
+	    	params['geo'] = geo
+
+	    	Place.create(params, function(err, place){
+				if(err){
+					if(callback != null)
+						callback(err, null)
+
+					return
+				}
+
 				if(callback != null)
-					callback(err, null)
-				return
-			}
-			if(callback != null)
-				callback(null, place.summary())
-		})
+					callback(null, place.summary())
+			})
+
+	    })
+
+	    .catch(function(err){
+	    	console.log('ERROR: '+err)
+	    	
+	    })
+
 	},
 
 	put: function(id, params, callback){
