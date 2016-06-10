@@ -18,6 +18,15 @@
 
     </form>
 
+   <h2>Login</h2>
+    
+    <form action="/account/login" method="post">
+        <input type="text" name="email" placeholder="Email" /><br />
+        <input type="text" name="password" placeholder="Password" /><br />
+        <input type="submit" value="Submit" /><br />
+
+    </form>
+
     <h2>Create Place</h2>
 
     <form action="/api/place" method="post">
