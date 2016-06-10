@@ -95,6 +95,9 @@ router.post('/:resource', function(req, res, next) {
 			return
 		}
 
+		if(resource == 'profile') //user signing up
+			req.session.user = result.id
+
 		res.json({
 			confirmation: 'success',
 			result: result
