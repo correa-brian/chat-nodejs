@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 
 var PlaceSchema = new mongoose.Schema({
 	name: {type: String, default:''},
-	key: {type:String, default:''},
+	password: {type:String, default:''},
 	address: {type: String, lowercase: true, default:''},
 	city: {type: String, lowercase: true, default:''},
 	state: {type: String, lowercase: true, default:''},
