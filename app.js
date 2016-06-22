@@ -11,7 +11,7 @@ var routes = require('./routes/index');
 var api = require('./routes/api');
 var account = require('./routes/account');
 
-var dbUrl = 'mongodb://localhost/Chat'
+var dbUrl = process.env.MONGODB_URI || 'mongodb://localhost/Chat'
 mongoose.connect(dbUrl, function(err, res){
   if(err){
     console.log('DB CONNECTION FAILED: '+err)
