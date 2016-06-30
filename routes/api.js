@@ -24,7 +24,7 @@ router.get('/:resource', function(req, res, next) {
 		if(err){
 			res.json({
 				confirmation: 'fail',
-				message: err
+				message: err.message
 			})
 			
 			return

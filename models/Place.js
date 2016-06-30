@@ -16,6 +16,7 @@ PlaceSchema.methods.summary = function(){
 	var summary ={
 		name: this.name,
 		address: this.address,
+		password: this.password,
 		city: this.city,
 		state: this.state,
 		zip: this.zip,

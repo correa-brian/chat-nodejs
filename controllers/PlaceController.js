@@ -4,6 +4,18 @@ var Request = require('../utils/Request')
 module.exports = {
 	
 	get: function(params, isRaw, callback){
+		var key = params['key']
+		if(key == null){
+			callback({message:'Please include an api key'}, null)
+			return
+		}
+		if(key != '123'){ //temporary key for testing
+			callback({message: 'Invalid API Key'}, null)
+			return
+		}
+
+		delete params['key']
+
 		//geo spatial query
 		
 		if(params.lat!=null && params.lng!=null){
