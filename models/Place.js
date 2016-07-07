@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 var PlaceSchema = new mongoose.Schema({
 	name: {type: String, default:''},
 	password: {type:String, default:''},
+	image: {type:mongoose.Schema.Types.Mixed, default:{}},
 	address: {type: String, lowercase: true, default:''},
 	city: {type: String, lowercase: true, default:''},
 	state: {type: String, lowercase: true, default:''},
@@ -15,6 +16,7 @@ var PlaceSchema = new mongoose.Schema({
 PlaceSchema.methods.summary = function(){
 	var summary ={
 		name: this.name,
+		image: this.image,
 		address: this.address,
 		password: this.password,
 		city: this.city,
