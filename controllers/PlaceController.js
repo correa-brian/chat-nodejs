@@ -88,6 +88,21 @@ module.exports = {
 	    	if(params['admins[]'] != null)
 	    		params['admins'] = params['admins[]']
 
+	    	var imageInfo = {}
+	    	var processImage = false
+	    	if(params['image[thumb]'] != null){
+	    		processImage = true
+	    		imageInfo['thumb'] = params['image[thumb]']
+	    	}
+	    		
+	    	if(params['image[original]'] != null){
+	    		processImage = true
+	    		imageInfo['original'] = params['image[original]']
+	    	}
+
+	    	if(processImage == true)
+	    	params['image'] = imageInfo
+
 	    	Place.create(params, function(err, place){
 				if(err){
 					if(callback != null)
