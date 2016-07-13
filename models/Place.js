@@ -9,6 +9,7 @@ var PlaceSchema = new mongoose.Schema({
 	state: {type: String, lowercase: true, default:''},
 	zip: {type: String, lowercase: true, default:''},
 	admins:{type: Array, default:[]},
+	visited:{type: Array, default:[]},
 	geo: {type:[Number], index: '2d'},
 	timestamp: {type: Date, default: Date.now}
 })
@@ -24,6 +25,7 @@ PlaceSchema.methods.summary = function(){
 		zip: this.zip,
 		geo: this.geo,
 		admins: this.admins,
+		visited: this.visited,
 		timestamp: this.timestamp,
 		id: this._id
 	}
